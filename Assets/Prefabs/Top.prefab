@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7980248276932854006}
   - component: {fileID: 6515559457474006208}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MeshWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465525382854130443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e848adad9708be446be5d10b9ac0954c, type: 3}
   m_Name: 
@@ -218,22 +218,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2552687954530722300}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3435562595362659501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 50d1c7574bd3c1f40a65c5c907f5f9d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 2552687954530722300}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5869659003352083945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3435562595362659501}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e848adad9708be446be5d10b9ac0954c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinVelocity: 2

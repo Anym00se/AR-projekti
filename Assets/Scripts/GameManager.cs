@@ -30,12 +30,12 @@ public class GameManager : MonoBehaviour
             if (!top1)
             {
                 top1 = Instantiate(topPrefab, arena.transform.Find("Spawn1").position, Quaternion.identity);
-                top1.GetComponent<Rigidbody>().useGravity = false;
+                DisableTop(top1);
             }
             else if (!top2)
             {
                 top2 = Instantiate(topPrefab, arena.transform.Find("Spawn2").position, Quaternion.identity);
-                top2.GetComponent<Rigidbody>().useGravity = false;
+                DisableTop(top1);
             }
         }
     }
@@ -44,16 +44,29 @@ public class GameManager : MonoBehaviour
     {
         if (top1)
         {
-            top1.GetComponent<Rigidbody>().useGravity = true;
+            EnableTop(top1);
         }
         if (top2)
         {
-            top2.GetComponent<Rigidbody>().useGravity = true;
+            EnableTop(top2);
         }
     }
 
     GameObject FindArena()
     {
         return GameObject.FindWithTag("Arena");
+    }
+
+    private void EnableTop(GameObject top)
+    {
+        top.GetComponent<Rigidbody>().useGravity = true;
+        top.transform.Find("TopWrapper").GetComponent<Top>().enabled = true;
+    }
+
+    private void DisableTop(GameObject top)
+    {
+        top.GetComponent<Rigidbody>().useGravity = false;
+        top.transform.Find("TopWrapper").GetComponent<Top>().enabled = false;
+        top.transform.rotation = Quaternion.identity;
     }
 }
