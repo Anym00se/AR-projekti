@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
     private void ChangeTopSize(GameObject top, Slider slider)
     {
         top.transform.localScale = Vector3.one * slider.value;
+        top.GetComponent<Rigidbody>().mass = slider.value * slider.value;
     }
 
     private void ChangeTopColor(GameObject top)
