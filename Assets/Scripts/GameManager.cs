@@ -18,10 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button releaseTopsButton;
     [SerializeField] private Button spawnNewTopsButton;
 
-    [Header("Misc")]
-    [SerializeField] private Material blueTopMaterial;
-    [SerializeField] private Material redTopMaterial;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Home))
@@ -50,11 +46,13 @@ public class GameManager : MonoBehaviour
             {
                 top1 = Instantiate(topPrefab, arena.transform.Find("Spawn1").position, Quaternion.identity);
                 DisableTop(top1);
+                ChangeTopColor(top1);
             }
             else if (!top2)
             {
                 top2 = Instantiate(topPrefab, arena.transform.Find("Spawn2").position, Quaternion.identity);
                 DisableTop(top2);
+                ChangeTopColor(top2);
             }
         }
     }
@@ -79,13 +77,13 @@ public class GameManager : MonoBehaviour
     private void EnableTop(GameObject top)
     {
         top.GetComponent<Rigidbody>().useGravity = true;
-        top.transform.Find("TopWrapper").GetComponent<Top>().enabled = true;
+        top.transform.Find("MeshWrapper").GetComponent<Top>().enabled = true;
     }
 
     private void DisableTop(GameObject top)
     {
         top.GetComponent<Rigidbody>().useGravity = false;
-        top.transform.Find("TopWrapper").GetComponent<Top>().enabled = false;
+        top.transform.Find("MeshWrapper").GetComponent<Top>().enabled = false;
         top.transform.rotation = Quaternion.identity;
     }
 
@@ -128,14 +126,14 @@ public class GameManager : MonoBehaviour
 
     private void ChangeTopColor(GameObject top)
     {
-        Renderer topMeshRenderer = top.transform.Find("TopWrapper").Find("top").GetComponent<Renderer>();
-        if (topMeshRenderer.materials[1] == blueTopMaterial)
+        Renderer topMeshRenderer = top.transform.Find("MeshWrapper").Find("top").GetComponent<Renderer>();
+        if (topMeshRenderer.materials[1].color == Color.blue)
         {
-            topMeshRenderer.materials[1] = redTopMaterial;
+            topMeshRenderer.materials[1].color = Color.red;
         }
         else
         {
-            topMeshRenderer.materials[1] = blueTopMaterial;
+            topMeshRenderer.materials[1].color = Color.blue;
         }
     }
 }
