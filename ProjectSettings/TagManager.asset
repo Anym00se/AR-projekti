@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Arena
+  - Top
   layers:
   - Default
   - TransparentFX

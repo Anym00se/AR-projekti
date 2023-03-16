@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject top2Wrapper;
     [SerializeField] private Button releaseTopsButton;
     [SerializeField] private Button spawnNewTopsButton;
+    [SerializeField] private Text winnerText;
+    private bool gameStarted = false;
+
+    void Start()
+    {
+        winnerText.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -30,6 +37,32 @@ public class GameManager : MonoBehaviour
 
         releaseTopsButton.interactable = top1 != null && top2 != null;
         spawnNewTopsButton.interactable = top1 == null || top2 == null;
+
+        if (gameStarted)
+        {
+            string whoWins = "";
+            if (!top1)
+            {
+                gameStarted = false;
+                whoWins = "Top 2 wins!";
+                Debug.Log(whoWins);
+            }
+            if (!top2)
+            {
+                gameStarted = false;
+                whoWins = "Top 1 wins!";
+                Debug.Log(whoWins);
+            }
+
+            // Case: Game ended because a top has been destoryed
+            if (!gameStarted)
+            {
+                if (top1) { Destroy(top1, 2f); }
+                if (top2) { Destroy(top2, 2f); }
+
+                ShowWinnerText(whoWins);
+            }
+        }
     }
 
     public void ReloadScene()
@@ -39,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTop()
     {
+        winnerText.gameObject.SetActive(false);
+
         GameObject arena = FindArena();
         if (arena)
         {
@@ -67,6 +102,8 @@ public class GameManager : MonoBehaviour
         {
             EnableTop(top2);
         }
+
+        gameStarted = true;
     }
 
     GameObject FindArena()
@@ -136,5 +173,11 @@ public class GameManager : MonoBehaviour
         {
             topMeshRenderer.materials[1].color = Color.blue;
         }
+    }
+
+    private void ShowWinnerText(string winString)
+    {
+        winnerText.text = winString;
+        winnerText.gameObject.SetActive(true);
     }
 }

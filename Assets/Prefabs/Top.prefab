@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 8212507462731038499}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Top
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e7c7225914d0849b83f96e4ac2f54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulse: 1
 --- !u!1001 &2552687954530722300
 PrefabInstance:
   m_ObjectHideFlags: 0
