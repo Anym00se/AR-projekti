@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button releaseTopsButton;
     [SerializeField] private Button spawnNewTopsButton;
     [SerializeField] private Text winnerText;
+    [SerializeField] private Slider top1_moveSlider;
+    [SerializeField] private Slider top2_moveSlider;
     private bool gameStarted = false;
 
     void Start()
@@ -154,6 +156,27 @@ public class GameManager : MonoBehaviour
         {
             ChangeTopColor(top2);
         }
+    }
+
+    public void MoveTop_1()
+    {
+        MoveTop(top1, true, top1_moveSlider);
+    }
+
+    public void MoveTop_2()
+    {
+        MoveTop(top2, false, top2_moveSlider);
+    }
+
+    private void MoveTop(GameObject top, bool isTop1, Slider moveSlider)
+    {
+        Vector3 originalPosition = FindArena().transform.Find("Spawn1").position;
+        if (!isTop1)
+        {
+            originalPosition = FindArena().transform.Find("Spawn2").position;
+        }
+        
+        top.transform.position = originalPosition + Vector3.up * moveSlider.value * 0.1f;
     }
 
     private void ChangeTopSize(GameObject top, Slider slider)
