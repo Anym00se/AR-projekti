@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TopSphere : MonoBehaviour
 {
-    public float impulse = 2f;
+    private float impulse = 1f;
     private float pushDelay = 0f;
 
     void Update()
@@ -19,9 +19,18 @@ public class TopSphere : MonoBehaviour
         {
             pushDelay = 0.2f;
             collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(
-                -(collision.collider.gameObject.transform.position - transform.position).normalized * impulse,
+                (collision.collider.gameObject.transform.position - transform.position + GetRandom_XZ_Vector()).normalized * impulse,
                 ForceMode.Impulse
             );
         }
+    }
+
+    private Vector3 GetRandom_XZ_Vector()
+    {
+        return new Vector3(
+            Random.Range(-1f, 1f),
+            0f,
+            Random.Range(-1f, 1f)
+        );
     }
 }
