@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         top2Wrapper.SetActive(top2 != null);
 
         releaseTopsButton.interactable = top1 != null && top2 != null;
-        spawnNewTopsButton.interactable = top1 == null || top2 == null;
+        spawnNewTopsButton.interactable = FindArena() && (top1 == null || top2 == null);
 
         if (gameStarted)
         {
